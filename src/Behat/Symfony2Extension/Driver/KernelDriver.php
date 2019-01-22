@@ -12,6 +12,7 @@
 namespace Behat\Symfony2Extension\Driver;
 
 use Behat\Mink\Driver\BrowserKitDriver;
+use Symfony\Component\HttpKernel\Client;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
@@ -23,6 +24,6 @@ class KernelDriver extends BrowserKitDriver
 {
     public function __construct(KernelInterface $kernel, $baseUrl = null)
     {
-        parent::__construct($kernel->getContainer()->get('test.client'), $baseUrl);
+        parent::__construct(new Client($kernel), $baseUrl);
     }
 }
